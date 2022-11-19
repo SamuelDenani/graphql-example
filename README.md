@@ -1,6 +1,6 @@
 # GraphQL Example
 
-This project was created as a way to teach about GraphQL API developing and consuming.
+This project was created as a way to teach about developing and consuming a GraphQL API.
 
 ## How to run
 
