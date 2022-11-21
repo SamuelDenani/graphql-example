@@ -1,7 +1,7 @@
 import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import { HomePage, PostPage, UserPage } from "./pages";
+import { HomePage, PostPage, UserPage, ContactPage } from "./pages";
 import { client } from "./graphql";
 import { GlobalLayout } from "./layouts";
 import "./App.css";
@@ -20,6 +20,9 @@ function App() {
             </Route>
             <Route exact path="/posts/:postId">
               <PostPage />
+            </Route>
+            <Route exact path="/contact">
+              <ContactPage />
             </Route>
           </Switch>
         </GlobalLayout>
