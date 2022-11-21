@@ -1,32 +1,45 @@
 import { useQuery } from "@apollo/client";
+import { useState } from "react";
 import { Box, Heading } from "rebass";
 import { LIST_USERS } from "../../graphql/queries/list-users";
 import { User } from "../../typings/user";
-import { UserCard } from "./components";
+import { GetPosts, UserCard } from "./components";
+import { GetUsers } from "./components/Users";
+
+const container = {
+  "width": "100%", 
+  "justifyContent": "space-between",
+   "display": "flex",
+   "margin": "50px"
+  }
 
 export const HomePage = () => {
-  const { data, loading, error } = useQuery<{ users: User[] }>(LIST_USERS);
+  const [allUsers, setAllUsers] = useState(true)
+  const [allposts, setAllPosts] = useState(false)
 
-  if (loading) return <>Carregando...</>;
-  if (error || !data?.users) return <>Deu ruim :(</>;
-
-  const { users } = data;
+  const viewPosts = () =>{
+    setAllUsers(false)
+    setAllPosts(true)
+  }
+  
 
   return (
-    <Box p={60}>
-      <Heading fontSize={72} mb={54}>
-        Todos usuários
-      </Heading>
 
-      {users.map(({ id, name, username, website }) => (
-        <UserCard
-          key={id}
-          id={id}
-          name={name}
-          username={username}
-          website={website}
-        />
-      ))}
+    <Box p={60}>
+      <Heading fontSize={72} mt={50} mb={54}>
+        Página Inicial
+      </Heading>
+      <div style={container}>
+        <button onClick={()=>setAllUsers(true)}>Todos os usuários</button>
+        <button onClick={viewPosts}>Todos os Posts</button>
+      </div>
+      {allUsers && (
+        <GetUsers />
+      )}
+      {allposts && (
+        <GetPosts />
+      )}
+      
     </Box>
   );
 };

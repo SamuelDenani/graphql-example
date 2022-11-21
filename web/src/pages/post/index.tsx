@@ -13,7 +13,7 @@ export const PostPage = () => {
   const { data, loading } = useQuery<{ post: Post }, { postId: string }>(
     GET_POST,
     {
-      variables: { postId },
+      variables: { postId: "1" },
     }
   );
 
